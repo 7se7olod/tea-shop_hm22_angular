@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'catalog', component: CatalogComponent },
   { path: 'catalog/:id', component: ProductComponent },
   { path: 'order', component: OrderComponent },
+  { path: '**', redirectTo: 'main' },
 ];
 
 @NgModule({
