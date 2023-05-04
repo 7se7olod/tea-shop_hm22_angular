@@ -12,21 +12,25 @@ export class OrderComponent implements OnInit {
   public isSuccessForm: boolean = false;
   public dangerTextForm: boolean = false;
   public isDisabledButton: boolean = false;
+  private readonly nameRegex: RegExp = new RegExp('^[а-яА-Я]');
+  private readonly phoneRegex: RegExp = new RegExp('^(\\+7|7|8)?[\\s\\-]?\\(?[489][0-9]{2}\\)?[\\s\\-]?[0-9]{3}[\\s\\-]?[0-9]{2}[\\s\\-]?[0-9]{2}$');
+  private readonly addressRegex: RegExp = new RegExp('^[А-Яа-я0-9\\s\\/-]*$');
+  private readonly countryRegex: RegExp = new RegExp('^[а-яА-Я]+(?:[\\s-][а-яА-Я]+)*$');
+  private readonly zipRegex: RegExp = new RegExp('^\\d{5}(?:[-\\s]\\d{4})?$');
 
   constructor(private formService: FormService,
               private orderService: OrderService) {
   }
 
   ngOnInit() {
-
     this.buyTeaForm = new FormGroup({
       product: new FormControl({value: this.orderService.product?.title, disabled: true}),
-      name: new FormControl('', [Validators.required, Validators.pattern(new RegExp('^[а-яА-Я]'))]),
-      phone: new FormControl('', [Validators.required, Validators.pattern(new RegExp('^(\\+7|7|8)?[\\s\\-]?\\(?[489][0-9]{2}\\)?[\\s\\-]?[0-9]{3}[\\s\\-]?[0-9]{2}[\\s\\-]?[0-9]{2}$'))]),
-      last_name: new FormControl('', [Validators.required, Validators.pattern(new RegExp('^[а-яА-Я]'))]),
-      country: new FormControl('', [Validators.required]),
-      zip: new FormControl('', [Validators.required]),
-      address: new FormControl('', [Validators.required, Validators.pattern(new RegExp('^[A-Za-z0-9\\s\\/-]*$'))]),
+      name: new FormControl('', [Validators.required, Validators.pattern(this.nameRegex)]),
+      phone: new FormControl('', [Validators.required, Validators.pattern(this.phoneRegex)]),
+      last_name: new FormControl('', [Validators.required, Validators.pattern(this.nameRegex)]),
+      country: new FormControl('', [Validators.required, Validators.pattern(this.countryRegex)]),
+      zip: new FormControl('', [Validators.required, Validators.pattern(this.zipRegex)]),
+      address: new FormControl('', [Validators.required, Validators.pattern(this.addressRegex)]),
       comment: new FormControl('', []),
     })
   }
