@@ -11,13 +11,16 @@
           <a class="nav-link" [routerLink]="'/main'" routerLinkActive="active">Главная</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="'/catalog'" routerLinkActive="active">Каталог</a>
+          <a class="nav-link" [routerLink]="'/catalog'" (click)="searchProduct()" routerLinkActive="active">Каталог</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Поиск чая">
-        <button class="btn btn-outline-primary" type="submit">Найти</button>
-      </form>
+      <div class="d-flex gap-2">
+        <div class="position-relative">
+          <input class="form-control me-2" placeholder="Поиск чая" #searchInputElement (keyup)="searchInputElement.value">
+          <button *ngIf="searchInputElement.value" class="btn text-danger position-absolute top-0" style="right: 0" (click)="searchProduct(); searchInputElement.value = ''">x</button>
+        </div>
+        <a class="btn btn-outline-primary" type="button" [routerLink]="'/catalog'" (click)="searchProduct(searchInputElement.value)">Найти</a>
+      </div>
     </div>
   </div>
 </nav>

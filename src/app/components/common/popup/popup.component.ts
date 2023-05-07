@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import {Router} from "@angular/router";
+import {ProductService} from "../../../services/product.service";
 
 @Component({
   selector: 'popup-component',
   templateUrl: './popup.component.html',
 })
 export class PopupComponent {
-  constructor(private router: Router) {
+  constructor(private productService: ProductService) {
   }
   public toCatalog(): void {
-    this.router.navigate(['/catalog']);
+    this.productService.getProducts().subscribe();
   }
 }

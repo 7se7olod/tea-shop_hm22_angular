@@ -7,7 +7,7 @@
           class="position-absolute top-0 h-100 d-flex flex-column justify-content-evenly align-items-start p-xl-5 p-sm-4 p-3 gap-1 mx-sm-5 mx-3">
           <h1 class="slide-banner-title text-black w-100 m-0 px-2 fw-bold">Скидки на травянные чаи</h1>
           <div class="slide-banner-text text-black px-2">Узнай все подробности, заполнив заявку</div>
-          <a [routerLink]="'/catalog'" type="button"
+          <a [routerLink]="'/catalog'" (click)="goToCatalog()" type="button"
              class="btn btn-primary btn-lg btn-sm mx-2 hvr-sweep-to-right border-0 col-lg-3 col-md-4 col-5">
             Каталог
           </a>

@@ -1,7 +1,14 @@
 import { Component } from '@angular/core';
+import {ProductService} from "../../../services/product.service";
 
 @Component({
   selector: 'header-component',
   templateUrl: './header.component.html',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  constructor(private productService: ProductService) {
+  }
+  public searchProduct(title?: string): void {
+    this.productService.getProducts(title).subscribe();
+  }
+}
