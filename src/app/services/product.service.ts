@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, shareReplay, Observable, tap} from 'rxjs';
 import {ProductType} from "../types/product.type";
 
@@ -7,18 +7,14 @@ import {ProductType} from "../types/product.type";
 export class ProductService {
   private allProducts$ = this.http.get<ProductType[]>('https://testologia.ru/tea').pipe(shareReplay(1));
   public products$ = new BehaviorSubject<ProductType[]>([]);
-  public isShowLoader$ = new BehaviorSubject(false);
+  public isShowLoader$ = new BehaviorSubject<boolean>(false);
+  private searchTitle$ = new BehaviorSubject<string>('');
   constructor(private http: HttpClient) {
   }
 
-  // примерно так я хотел сделать запрос с параметрами, но у меня всегда возвращает пустой массив
-  // public getProducts1(productTitle: string): Observable<ProductType[]> {
-  //   const params = new HttpParams().set('search', productTitle);
-  //   return this.http.get<ProductType[]>('https://testologia.ru/tea', {params: params});
-  // }
 
-  // так как не получается сделать get запрос с query параметром search, я реализовал поиск таким способом ↓
-  public getProducts(teaTitle?: string): Observable<ProductType[]> {
+  public getProducts(): Observable<ProductType[]> {
+    const teaTitle = this.searchTitle$.getValue();
     this.isShowLoader$.next(true);
      return this.allProducts$
        .pipe(
@@ -33,5 +29,13 @@ export class ProductService {
           this.isShowLoader$.next(false);
         })
        )
+  }
+
+  get searchTitle(): string {
+    return this.searchTitle$.getValue();
+  }
+
+  public setSearchTitle(title?: string): void {
+    this.searchTitle$.next(title ? title : '');
   }
 }

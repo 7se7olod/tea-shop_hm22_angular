@@ -9,6 +9,6 @@ export class HeaderComponent {
   constructor(private productService: ProductService) {
   }
   public searchProduct(title?: string): void {
-    this.productService.getProducts(title).subscribe();
+    this.productService.setSearchTitle(title)
   }
 }

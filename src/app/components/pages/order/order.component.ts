@@ -34,9 +34,12 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.buyTeaForm.patchValue({
-      product: this.orderService.product?.title,
-    })
+    const productTitle = this.orderService.product;
+    if (productTitle) {
+      this.buyTeaForm.patchValue({
+        product: productTitle,
+      })
+    }
   }
 
   get product() {

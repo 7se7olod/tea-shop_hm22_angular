@@ -26,6 +26,6 @@ export class MainComponent implements OnDestroy {
   }
 
   public goToCatalog(): void {
-    this.productService.getProducts().subscribe();
+    // this.productService.setSearchTitle('');
   }
 }

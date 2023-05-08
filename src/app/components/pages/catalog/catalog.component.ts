@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, DoCheck} from '@angular/core';
 import {ProductService} from "../../../services/product.service";
 
 @Component({
@@ -6,9 +6,14 @@ import {ProductService} from "../../../services/product.service";
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css']
 })
-export class CatalogComponent {
+export class CatalogComponent implements DoCheck {
   public products$ = this.productService.products$;
   public isShowLoader$ = this.productService.isShowLoader$;
+
   constructor(private productService: ProductService) {
+  }
+
+  ngDoCheck() {
+    this.productService.getProducts().subscribe();
   }
 }

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../../services/product.service";
 import {ProductType} from "../../../types/product.type";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -10,7 +10,7 @@ import {OrderService} from "../../../services/order.service";
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit {
   public product$ = this.activatedRoute.params
     .pipe(
       switchMap(({id}) => {
@@ -27,6 +27,10 @@ export class ProductComponent {
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private orderService: OrderService) {
+  }
+
+  ngOnInit() {
+    this.productService.getProducts().subscribe();
   }
 
   public toOrderPage(product: ProductType) {
