@@ -1,9 +1,9 @@
 import {Component, OnDestroy} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {PopupComponent} from "../../common/popup/popup.component";
-import {QuestionsService} from "../../../services/questions.service";
-import {QuestionType} from "../../../types/question.type";
-import {ProductService} from "../../../services/product.service";
+import {ProductService} from "../../../shared/services/product.service";
+import {QuestionsService} from "../../../shared/services/questions.service";
+import {QuestionType} from "../../../shared/types/question.type";
+import {PopupComponent} from "../../../shared/layout/popup/popup.component";
 
 @Component({
   selector: 'app-main',
@@ -26,6 +26,6 @@ export class MainComponent implements OnDestroy {
   }
 
   public goToCatalog(): void {
-    // this.productService.setSearchTitle('');
+    this.productService.setSearchTitle('');
   }
 }

@@ -1,5 +1,5 @@
 import {Component, DoCheck} from '@angular/core';
-import {ProductService} from "../../../services/product.service";
+import {ProductService} from "../../../shared/services/product.service";
 
 @Component({
   selector: 'app-catalog',

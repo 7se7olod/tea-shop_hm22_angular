@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NonNullableFormBuilder, Validators} from "@angular/forms";
-import {FormService} from "../../../services/form.service";
-import {OrderService} from "../../../services/order.service";
-import {CreateOrderInputType} from "../../../types/create-order-input.type";
+import {FormService} from "../../../shared/services/form.service";
+import {OrderService} from "../../../shared/services/order.service";
+import {CreateOrderInputType} from "../../../shared/types/create-order-input.type";
 
 @Component({
   selector: 'app-order',

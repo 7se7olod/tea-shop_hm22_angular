@@ -11,7 +11,9 @@
     </p>
     <div class="d-flex justify-content-between align-items-center">
       <div class="btn-group">
-        <button [routerLink]="product.id.toString()" type="button" class="btn btn-primary w-25 hvr-sweep-to-right border-0">
+        <button title="Посмотреть подробную информацию о чае {{product.title}}" [routerLink]="product.id.toString()"
+                type="button"
+                class="btn btn-primary w-25 hvr-sweep-to-right border-0">
           Подробнее
         </button>
       </div>

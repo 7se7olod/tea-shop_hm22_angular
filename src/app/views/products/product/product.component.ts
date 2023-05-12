@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductService} from "../../../services/product.service";
-import {ProductType} from "../../../types/product.type";
 import {ActivatedRoute, Router} from "@angular/router";
 import {map, of, switchMap} from "rxjs";
-import {OrderService} from "../../../services/order.service";
+import {ProductService} from "../../../shared/services/product.service";
+import {OrderService} from "../../../shared/services/order.service";
+import {ProductType} from "../../../shared/types/product.type";
 
 @Component({
   selector: 'app-product',

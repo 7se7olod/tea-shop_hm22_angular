@@ -7,7 +7,10 @@
           class="position-absolute top-0 h-100 d-flex flex-column justify-content-evenly align-items-start p-xl-5 p-sm-4 p-3 gap-1 mx-sm-5 mx-3">
           <h1 class="slide-banner-title text-black w-100 m-0 px-2 fw-bold">Скидки на травянные чаи</h1>
           <div class="slide-banner-text text-black px-2">Узнай все подробности, заполнив заявку</div>
-          <a [routerLink]="'/catalog'" (click)="goToCatalog()" type="button"
+          <a [routerLink]="'/catalog'"
+             (click)="goToCatalog()"
+             type="button"
+             title="Перейти к каталогу"
              class="btn btn-primary btn-lg btn-sm mx-2 hvr-sweep-to-right border-0 col-lg-3 col-md-4 col-5">
             Каталог
           </a>
@@ -18,23 +21,21 @@
 </div>
 
 <div class="faq container mb-3 d-flex flex-column justify-content-center align-items-center gap-4">
-  <h3 class="faq-main-title text-center fw-bold">Ответы на часто задаваемые вопросы</h3>
-  <div id="accordion"
-       class="accordion container-md container-fluid d-flex flex-column gap-3 col-md-8 border-0"
-       *ngFor="let question of questions">
-    <div class="accordion-item border-0">
-      <h3 class="d-flex text-white bg-primary border-0 rounded-3">
-        <button class="accordion-button bg-transparent text-white border-0"
-                type="button" data-bs-toggle="collapse"
-                [attr.data-bs-target]="'#collapse' + question.id.toString()"
-                aria-expanded="false">
-          {{question.question}}
-        </button>
-      </h3>
-      <div class="accordion-collapse collapse border-0 fs-6 text-start border-0"
-           [id]="'collapse' + question.id.toString()"
-           data-bs-parent="#accordionExample">
-        {{question.answer}}
+
+  <div class="container container-md container-fluid d-flex flex-column gap-3 col-md-8 border-0" ngbAccordion
+       [closeOthers]="true">
+    <h3 class="faq-main-title text-center fw-bold">Ответы на часто задаваемые вопросы</h3>
+    <div class="border-0 mb-3" ngbAccordionItem *ngFor="let question of questions"
+         [collapsed]="question.question !== 'First'">
+      <h2 ngbAccordionHeader>
+        <button class="bg-primary text-white rounded-3" ngbAccordionButton>{{ question.question }}</button>
+      </h2>
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody>
+          <ng-template>
+            {{question.answer}}
+          </ng-template>
+        </div>
       </div>
     </div>
   </div>
