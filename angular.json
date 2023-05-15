@@ -4,6 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "homework22": {
+      "i18n": {"sourceLocale":  "ru"},
       "projectType": "application",
       "schematics": {},
       "root": "",
