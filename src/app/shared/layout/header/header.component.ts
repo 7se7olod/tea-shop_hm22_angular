@@ -6,6 +6,7 @@ import {ProductService} from "../../services/product.service";
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
+  public isMenuOpen = false;
   constructor(private productService: ProductService) {
   }
   public searchProduct(title?: string): void {
